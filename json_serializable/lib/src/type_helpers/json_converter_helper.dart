@@ -295,7 +295,10 @@ _ConverterMatch? _compatibleMatch(
   final fieldType = jsonConverterSuper.typeArguments[0];
 
   // Allow assigning T to T?
-  if (fieldType == targetType || fieldType == targetType.promoteNonNullable()) {
+  if (fieldType == targetType
+      || fieldType == targetType.promoteNonNullable()
+      || fieldType == targetType.extensionTypeErasure
+      || fieldType == targetType.extensionTypeErasure.promoteNonNullable()) {
     return _ConverterMatch(
       annotation,
       constantValue,
